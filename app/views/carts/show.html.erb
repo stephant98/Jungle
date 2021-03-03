@@ -1,3 +1,8 @@
+<% if enhanced_cart == [] %>
+<h3>Your cart is empty!</h3>
+<%= link_to 'Return Home', :root %>
+
+<% else %>
 <section class="cart-show">
 
   <header class="page-header">
@@ -31,12 +36,15 @@
       </tfoot>
     </table>
   </div>
+  
 
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
         <script
+        <% if enhanced_cart != [] %>
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          <% end %>
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-amount="<%= cart_subtotal_cents %>"
           data-name="Jungle"
@@ -50,3 +58,4 @@
   </div>
 
 </section>
+<% end %>
