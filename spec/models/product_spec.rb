@@ -15,11 +15,6 @@ RSpec.describe Product, type: :model do
 
   describe 'Validations' do
 
-    it 'is should not save if parameters are not valid' do
-      product = Product.create()
-      expect(product.errors.full_messages).to eq(["Price cents is not a number", "Price is not a number", "Price can't be blank", "Name can't be blank", "Quantity can't be blank", "Category can't be blank"])
-    end
-
     it "should not be valid without a name" do
       @product.name = nil
       @product.save
